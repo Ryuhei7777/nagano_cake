@@ -1,29 +1,64 @@
 <div class="container">
   <div class="mt-5 w-25">
-    <h4 class="text-center">商品新規登録</h4>
+    <h4 class="text-center" style="background-color: #d3d3d3; width: 70%;">商品新規登録</h4>
   </div>
-    <div class="col-md-8 mt-5">
-      <%= form_with model: @item do |f| %>
-      
-      <span>商品画像</span>
-      <span><%= f.file_field :image,accept: "image/*",class:"ml-5"%></span>
-      
-      <span>商品名</span>
-      <%= f.text_field :name%>
-      
-      <span>商品説明</span>
-      <%= f.text_area :introduction%>
-      
-      <span>ジャンル</span>
+  <%= form_with model: @item do |f| %>
 
-      <span>税抜価格</span>
-      <%= f.text_field :price%>円
-      
-      <span>販売ステータス</span>
-
-
-      <%= f.submit '新規登録',class:"btn btn-success w-25 text-light ml-5"  %>
-      <% end %>
+  <div class="row ml-5 pl-5 mt-5">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品画像</span>
     </div>
+    <div class="col-7">
+      <%= f.file_field :image,accept: "image/*",class:"ml-5 col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品名</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :name,placeholder:"商品名",class:"ml-5 col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品説明</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_area :introduction,placeholder:"ここに説明文を記述します",class:"ml-5 col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">ジャンル</span>
+     </div>
+     <div class="col-6">
+
+     </div>
+   </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">税抜価格</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :price,placeholder:"1000",class:"ml-5 col-9"%>円
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-3 ml-4">
+      <span class="col-5">販売ステータス</span>
+    </div>
+    <div class="col-6">
+
+    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit '新規登録',class:"btn btn-success text-light mr-5 mt-4",style:"width:15%;"%>
+    <% end %>
   </div>
 </div>
