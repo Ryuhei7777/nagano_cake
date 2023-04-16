@@ -1,15 +1,15 @@
 <div class="container">
   <div class="mt-5 w-25">
-    <h4 class="text-center" style="background-color: #d3d3d3; width: 70%;">商品新規登録</h4>
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 70%;">商品新規登録</h4>
   </div>
-  <%= form_with model: @item do |f| %>
+  <%= form_with model: @item, url:admin_items_path do |f| %>
 
   <div class="row ml-5 pl-5 mt-5">
     <div class="col-2 ml-4">
       <span class="col-5">商品画像</span>
     </div>
-    <div class="col-7">
-      <%= f.file_field :image,accept: "image/*",class:"ml-5 col-9"%>
+    <div class="col-6 ml-4 pl-4">
+      <%= f.file_field :image,accept: "image/*",class:"col-9"%>
     </div>
   </div>
 
@@ -35,8 +35,8 @@
     <div class="col-2 ml-4">
       <span class="col-5">ジャンル</span>
      </div>
-     <div class="col-6">
-
+     <div class="col-6 ml-5">
+       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: "-- 選択してください --" }, style:"width: 75%; font-size: 15px;"%>
      </div>
    </div>
 
@@ -50,11 +50,15 @@
   </div>
 
   <div class="row ml-5 pl-5 mt-3">
-    <div class="col-3 ml-4">
+    <div class="col-2 ml-4" style="font-size: 15px;">
       <span class="col-5">販売ステータス</span>
     </div>
-    <div class="col-6">
+    <div class="col-6 ml-5">
+      <%= f.radio_button :is_active, "true" %>
+      <%= f.label :is_active, "販売中",class:"mr-3"%>
 
+      <%= f.radio_button :is_active, "false" %>
+      <%= f.label :is_active, "販売停止中" %>
     </div>
   </div>
   <div class="text-center">
