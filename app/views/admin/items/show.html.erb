@@ -1,2 +1,41 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-row mt-5 ml-5 pl-3">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 15%;">商品詳細</h4>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div>
+      <%= image_tag @item.image,width: '300px', height: '200px' %>
+    </div>
+
+    <div>
+      <span>商品名</span>
+      <span><%= @item.name%></span>
+    </div>
+
+    <div>
+      <span>商品説明</span>
+      <span><%= @item.introduction%></span>
+    </div>
+
+    <div>
+      <span>ジャンル</span>
+      <span><%= @item.genre.name%></span>
+    </div>
+
+    <div>
+      <span>税込価格</br>(税抜価格)</span>
+      <span><%= (@item.price*1.1).to_s(:delimited, precision: 0) %>(<%= @item.price.to_s(:delimited) %>)円</span>
+    </div>
+
+    <% if @item.is_active ==true %>
+     <div>
+      <span>販売ステータス</span>
+      <strong style="color:#3cb371;">販売中</strong>
+    </div>
+    <% else%>
+    <div>
+      <span>販売ステータス</span>
+      <strong style="color: #808080;">販売停止中</strong>
+    </div>
+    <% end %>
