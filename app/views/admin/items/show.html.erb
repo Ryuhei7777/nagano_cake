@@ -3,39 +3,71 @@
     <h4 class="text-center" style="background-color: #dcdcdc; width: 15%;">商品詳細</h4>
   </div>
 
-  <div class="d-flex flex-row">
-    <div>
+  <div class="row" style="margin-top: 80px;">
+    <div class="col-md-3">
       <%= image_tag @item.image,width: '300px', height: '200px' %>
     </div>
 
-    <div>
-      <span>商品名</span>
-      <span><%= @item.name%></span>
-    </div>
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <div class="col-2">
+          <span>商品名</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @item.name%></span>
+        </div>
+      </div>
 
-    <div>
-      <span>商品説明</span>
-      <span><%= @item.introduction%></span>
-    </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2" >
+          <span>商品説明</span>
+        </div>
+        <div class="col-7">
+          <span class="text-break" style="font-size: 17px;"><%= @item.introduction%></span>
+        </div>
+      </div>
 
-    <div>
-      <span>ジャンル</span>
-      <span><%= @item.genre.name%></span>
-    </div>
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>ジャンル</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @item.genre.name%></span>
+        </div>
+      </div>
 
-    <div>
-      <span>税込価格</br>(税抜価格)</span>
-      <span><%= (@item.price*1.1).to_s(:delimited, precision: 0) %>(<%= @item.price.to_s(:delimited) %>)円</span>
-    </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2">
+          <span>税込価格</br>(税抜価格)</span>
+        </div>
+        <div class="col-7 my-auto">
+          <span style="margin-right: 5px; font-size: 20px;"><%= (@item.price*1.1).floor.to_s(:delimited) %></span><span style="margin-right: 5px; font-size: 20px;">(<%= @item.price.to_s(:delimited) %>)</span><span>円</span>
+        </div>
+      </div>
 
-    <% if @item.is_active ==true %>
-     <div>
-      <span>販売ステータス</span>
-      <strong style="color:#3cb371;">販売中</strong>
+      <% if @item.is_active ==true %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2">
+          <span style="font-size:13px;">販売ステータス</span>
+        </div>
+        <div class="col-7 my-auto">
+          <strong style="color:#3cb371; font-size: 20px;">販売中</strong>
+        </div>
+      </div>
+
+      <% else%>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2">
+          <span style="font-size:13px;">販売ステータス</span>
+        </div>
+        <div class="col-7">
+          <strong style="color: #808080; font-size: 20px;">販売停止中</strong>
+        </div>
+      </div>
+      <% end %>
     </div>
-    <% else%>
-    <div>
-      <span>販売ステータス</span>
-      <strong style="color: #808080;">販売停止中</strong>
-    </div>
-    <% end %>
+  </div>
+  <div class="text-center">
+    <%= link_to "編集する", edit_admin_item_path(@item),class:"btn btn-success text-light mr-5 mt-4 ",style:"width:130px;" %>
+  </div>
+</div>

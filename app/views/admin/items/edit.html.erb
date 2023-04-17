@@ -1,2 +1,68 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="container">
+  <div class="mt-5 w-25">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 70%;">商品編集</h4>
+  </div>
+  
+  <<%= form_with model: @item, url:admin_item_path, method: :patch do |f| %>
+  <div class="row ml-5 pl-5 mt-5">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品画像</span>
+    </div>
+    <div class="col-6 ml-4 pl-4">
+      <%= f.file_field :image,accept: "image/*",class:"col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品名</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :name,placeholder:"商品名",class:"ml-5 col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">商品説明</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_area :introduction,placeholder:"ここに説明文を記述します",class:"ml-5 col-9"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">ジャンル</span>
+     </div>
+     <div class="col-6 ml-5">
+       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name),style:"width: 500px;" %>
+     </div>
+   </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4">
+      <span class="col-5">税抜価格</span>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :price,placeholder:"1000",class:"ml-5 col-9"%>円
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-4" style="font-size: 15px;">
+      <span class="col-5">販売ステータス</span>
+    </div>
+    <div class="col-6 ml-5">
+      <%= f.radio_button :is_active, "true" %>
+      <%= f.label :is_active, "販売中",class:"mr-3"%>
+
+      <%= f.radio_button :is_active, "false" %>
+      <%= f.label :is_active, "販売停止中" %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit '変更を保存',class:"btn btn-success text-light mr-5 mt-4",style:"width:15%;"%>
+    <% end %>
+  </div>
+</div>
