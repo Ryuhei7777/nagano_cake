@@ -19,14 +19,14 @@
             <td><%= customer.id %></td>
             <td><%= link_to customer.last_name, admin_customer_path(customer.id) %></td>
             <td><%= customer.email %></td>
-            <td><strong style="color:#3cb371;">退会</strong></td>
+            <td><strong style="color: #808080;">退会</strong></td>
           </tr>
           <% else%>
           <tr>
             <td><%= customer.id %></td>
             <td><%= link_to customer.last_name, admin_customer_path(customer.id) %></td>
             <td><%= customer.email %></td>
-            <td><strong style="color: #808080;">有効</strong></td>
+            <td><strong style="color:#3cb371;">有効</strong></td>
           </tr>
           <% end %>
         <% end %>

@@ -1,2 +1,99 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-row mt-5 ml-5 pl-3">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 15%;"><%= @customer.last_name%>さんの会員詳細</h4>
+  </div>
+
+  <div class="row" style="margin-top: 80px;">
+      <div class="row">
+        <div class="col-2">
+          <span>会員ID</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2" >
+          <span>氏名</span>
+        </div>
+        <div class="col-7">
+          <span class="text-break" style="font-size: 17px;"><%= @customer.last_name %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>フリガナ</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer.last_name_kana %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>郵便番号</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer.postal_code %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>住所</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer.address %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>電話番号</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer.telephon_number %></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-2">
+          <span>メールアドレス</span>
+        </div>
+        <div class="col-7">
+          <span style="font-size: 17px;"><%= @customer.email %></span>
+        </div>
+      </div>
+
+      <% if @customer.is_deleted ==true %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2">
+          <span style="font-size:13px;">会員ステータス</span>
+        </div>
+        <div class="col-7 my-auto">
+          <strong style="olor: #808080; font-size: 20px;">退会</strong>
+        </div>
+      </div>
+
+      <% else%>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-2">
+          <span style="font-size:13px;">会員ステータス</span>
+        </div>
+        <div class="col-7">
+          <strong style="ccolor:#3cb371; font-size: 20px;">有効</strong>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center">
+    <div>
+      <%= link_to "編集する", edit_admin_customer_path(@customer),class:"btn btn-success text-light mr-5 mt-4 ",style:"width:130px;" %>
+    </div>
+    <div>
+      <%= link_to "注文履歴一覧を見る", admin_root_path,class:"btn btn-success text-light mr-5 mt-4 ",style:"width:130px;" %>
+    </div>
+  </div>
