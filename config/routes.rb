@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     root to: 'homes#top'
+    get "/about" => "homes#about", as: "_about"
   end
+  
   scope module: :public do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
