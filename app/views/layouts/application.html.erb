@@ -28,7 +28,7 @@
     <% elsif customer_signed_in? %>
       <div class="d-flex flex-row">
         <div class="col-4">
-          <h2><%= link_to "NAGANO_CAKEへようこそ",root_path %></h2>
+          <h2><%= link_to "NAGANO_CAKE",root_path %></h2>
         </div>
         <div class="col-8 d-flex flex-row" style="margin-left:7%; margin-top:10px;">
           <li class="col-md-2 px-0" style="list-style:none;"><%= link_to "マイページ",customers_path,class:"btn btn-success text-light",style:"width:80%;"%></li>
@@ -41,7 +41,7 @@
     <% else %>
      <div class="d-flex flex-row">
         <div class="col-4">
-          <h2><%= link_to "NAGANO_CAKEへようこそ",root_path %></h2>
+          <h2><%= link_to "NAGANO_CAKE",root_path %></h2>
         </div>
         <div class="col-8 d-flex flex-row" style="margin-left:15%; margin-top:10px;">
           <li class="col-md-2 px-0" style="list-style:none;"><%= link_to "About",public_about_path,class:"btn btn-success text-light",style:"width:70%;"%></li>
