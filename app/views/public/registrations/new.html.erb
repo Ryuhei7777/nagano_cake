@@ -8,34 +8,34 @@
   
   <div class="row" style="margin-top:50px;">
     <div class="col-md-2" style="padding-top:5px;"><%= f.label :名前 %></div>
-    <div class="col-md-4"><span style="margin-right:25px;">(姓)</span><%= f.text_field :first_name,style:"width:280px; height:35px;"%></div>
-    <div class="col-md-5"><span style="margin-right:25px;">(名)</span><%= f.text_field :last_name,style:"width:280px; height:35px;"%></div>
+    <div class="col-md-4"><span style="margin-right:25px;">(姓)</span><%= f.text_field :first_name,placeholder:"令和",style:"width:280px; height:35px;"%></div>
+    <div class="col-md-5"><span style="margin-right:25px;">(名)</span><%= f.text_field :last_name,placeholder:"道子",style:"width:280px; height:35px;"%></div>
   </div>
       
   <div class="row" style="margin-top:10px;">
     <div class="col-md-2" style="padding-top:5px;"><%= f.label :フリガナ %></div>
-    <div class="col-md-4"><span style="margin-right:10px;">(セイ)</span><%= f.text_field :first_name_kana,style:"width:280px; height:35px;"%></div>
-    <div class="col-md-5"><span style="margin-right:10px;">(メイ)</span><%= f.text_field :last_name_kana,style:"width:280px; height:35px;"%></div>
+    <div class="col-md-4"><span style="margin-right:10px;">(セイ)</span><%= f.text_field :first_name_kana,placeholder:"レイワ",style:"width:280px; height:35px;"%></div>
+    <div class="col-md-5"><span style="margin-right:10px;">(メイ)</span><%= f.text_field :last_name_kana,placeholder:"ミチコ",style:"width:280px; height:35px;"%></div>
   </div>
-  
+
   <div class="row" style="margin-top:10px;">
     <div class="col-md-2" style="padding-top:5px;"><%= f.label :メールアドレス %></div>
-    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.email_field :email, autofocus: true, autocomplete: "email",style:"width:280px; height:35px;"%></div>
+    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com",style:"width:280px; height:35px;"%></div>
   </div>
 
   <div class="row" style="margin-top:10px;">
     <div class="col-md-2" style="font-size:15px; padding-top:5px;"><%= f.label :郵便番号 %><em>(ハイフンなし)</em></div>
-    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.text_field :postal_code,style:"width:280px; height:35px;"%></div>
+    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.text_field :postal_code,placeholder:"0000000",style:"width:280px; height:35px;"%></div>
   </div>
   
   <div class="row" style="margin-top:10px;">
     <div class="col-md-2" style="padding-top:5px;"><%= f.label :住所 %></div>
-    <div class="col-md-9"><span style="margin-right:52px;"></span><%= f.text_field :address,style:"width:660px; height:35px;"%></div>
+    <div class="col-md-9"><span style="margin-right:52px;"></span><%= f.text_field :address,placeholder:"東京都渋谷区代々木神園町0-0",style:"width:660px; height:35px;"%></div>
   </div>
 
   <div class="row" style="margin-top:10px;">
     <div class="col-md-2" style="font-size:15px; padding-top:5px;"><%= f.label :電話番号 %><em>(ハイフンなし)</em></div>
-    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.text_field :telephone_number,style:"width:280px; height:35px;"%></div>
+    <div class="col-md-4"><span style="margin-right:52px;"></span><%= f.text_field :telephone_number,placeholder:"0000000000",style:"width:280px; height:35px;"%></div>
   </div>
 
    <div class="row" style="margin-top:10px;">
