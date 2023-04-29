@@ -1,26 +1,41 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container px-5">
+  <div style="margin-top:30px;">
+     <h4 class="text-center" style="background-color: #dcdcdc; width: 15%;">ログイン</h4>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  
+  <div style="margin-top:40px; margin-left:30px;">
+     <p class="text-center" style="background-color: #dcdcdc; width: 32%; font-size:19px;">会員の方はこちらからログイン</p>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  
+  <%= form_with model: @customer, url: customer_session_path do |f| %>
+  <div class="row ml-5 pl-5 mt-5">
+    <div class="col-2 ml-5 pl-4">
+      <%= f.label :"メールアドレス" %><br />
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="col-6">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com",class:"w-100" %>
+    </div>
   </div>
-<% end %>
 
-<%= render "public/shared/links" %>
+  <div class="row ml-5 pl-5 mt-3">
+    <div class="col-2 ml-5 pl-4">
+    <%= f.label :"パスワード" %><br />
+    </div>
+    <div class="col-6">
+      <%= f.password_field :password, autocomplete: "current-password",class:"w-100"%>
+    </div>
+  </div>
+
+  <div class="row ml-5 pl-5" style="margin-top:37px;">
+    <div class="col-2 ml-5"></div>
+    <div class="col-4">
+      <%= f.submit "ログイン" ,class:"btn btn-primary w-50 text-light" %>
+    </div>
+  </div>
+
+  <% end %>
+  <div style="margin-top:70px; margin-left:30px;">
+    <p class="text-center" style="background-color: #dcdcdc; width: 27%; font-size:20px;">会員登録がお済みでない方</p>
+    <span style="font-size:17px;"><%= link_to "こちら", new_customer_registration_path,style:"margin-left:150px; margin-right:10px;"%>から新規登録を行ってください。</span>
+  </div>
+</div>

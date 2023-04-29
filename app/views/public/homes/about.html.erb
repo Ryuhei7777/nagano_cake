@@ -14,10 +14,17 @@
         </b>
       </p>
     </div>
-    
+
     <%# 画像挿入箇所%>
-    <div> 
+    <div class="col-md-7 mx-auto imagebg" style="height: 270px; margin-left: 20px;">
     </div>
-    
+
+    <style>
+      .imagebg{
+        background-image: url(<%= asset_path('image1.jpg') %>);
+        background-size: 100% 100%;
+      }
+    </style>
+
   </div>
 </div>
