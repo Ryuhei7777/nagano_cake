@@ -1,2 +1,32 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container mt-5">
+  <div class="col-md-12">
+      <p>
+        <b style="font-size:30px;">商品一覧</b><span style="font-size:20px; margin-left:10px;">(全<%= @items.count %>件)</span>
+      </p>
+  </div>
+
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-md-3" style="margin-top:30px;">
+      <%= link_to item_path(item) do%>
+        <% if item.image.attached? %>
+          <div><%= image_tag item.image,width: '250px', height: '180px' %></div>
+        <% else %>
+          <div><%= image_tag "image1",width: '250px', height: '180px' %></div>
+        <% end %>
+      <% end %>
+      <div style="display:flex;">
+        <div style="margin-top:10px;">商品名</div>
+        <div style="margin-left:25px; margin-top:10px;"><%= item.name%></div>
+      </div>
+      <div style="display:flex;">
+        <div style="margin-top:8px;">税抜価格</div>
+        <div style="margin-left:7px; margin-top:8px;">￥<%= item.price.to_s(:delimited)%></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div style="margin-left: 45%; margin-top:70px;">
+    <%= paginate @items %>
+  </div>
+</div>

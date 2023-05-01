@@ -1,2 +1,34 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="row" style="margin-top: 80px;">
+    <div class="col-md-4" style="padding-right:0px;">
+      <%= image_tag @item.image,width: '300px', height: '200px' %>
+    </div>
+
+    <div class="col-md-8" style="padding-left:0px;">
+      <div class="row">
+        <div class="col-10">
+          <b style="font-size: 30px;"><%= @item.name%></b>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-10">
+          <span class="text-break" style="font-size: 20px;"><%= @item.introduction%></span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 60px;">
+        <div class="col-10">
+          <b style="margin-right: 5px; font-size: 30px;">￥<%= (@item.price*1.1).floor.to_s(:delimited) %></b><span style="margin-left: 5px; font-size: 17px;">(税込)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= form_with model: @items_new, url:cart_items_path do |f| %>
+  <div class="row" style="margin-top: 40px; margin-left:390px;">
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <div><%= f.select :amount, *[1..10],{include_blank: "個数選択"},required:true, style:"width: 150px; height:30px; font-size: 15px;"%></div>
+    <div style="margin-left:50px;"><%= f.submit "カートに入れる",class:"btn btn-success text-light",style:"width:170px;" %></div>
+  </div>
+  <% end %>
+</div>
