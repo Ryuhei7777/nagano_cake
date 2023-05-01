@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "/about" => "homes#about", as: "_about"
   end
-  
+
   scope module: :public do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resource :customers, only: [:show, :edit, :update]
   end
   get "/customers/withdraw_check" => "public/customers#withdraw_check", as: "withdraw_check"
-  patch "/customers/withdraw" => "public/customers#withdraw", as: ""
+  patch "/customers/withdraw" => "public/customers#withdraw", as: "withdraw"
 
   scope module: :public do
     resources :registrations, only: [:new, :create]

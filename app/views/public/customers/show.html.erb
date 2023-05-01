@@ -1,20 +1,59 @@
-<div class="container">
+<div class="container" style="margin-left:0px;">
   <div class="mt-5">
-    <h4 class="text-center" style="background-color: #dcdcdc; width: 25%;">マイページ</h4>
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 17%; margin-left:220px;">マイページ</h4>
   </div>
   <div class="row">
-    <div class="col-md-7 mt-5">
+    <div class="col-md-2 text-right" style="margin-top:30px;">
+      <strong style="font-size:25px; padding-right:0px;">登録情報</strong>
+    </div>
+    <div class="col-md-8" style="margin-top:30px;">
+      <%= link_to "編集する",edit_customers_path,class:"btn btn-success text-light",style:"width:130px;"%>
+    </div>
 
-<%= @customer.last_name%>
-<%= @customer.first_name%>
-<%= @customer.last_name_kana%>
-<%= @customer.first_name_kana%>
-<%= @customer.postal_code%>
-<%= @customer.address%>
-<%= @customer.telephone_number%>
-<%= @customer.email%>
+    <table class="col-md-10" border="2" style="font-size:17px; margin-left:70px; margin-top:20px;">
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; height:10px; padding-left:5px;">氏名</td>
+        <td style="padding-left:5px;"><%= @customer.first_name%> <span style="margin-right:15px;"></span> <%= @customer.last_name%></td>
+      </tr>
 
-      </table>
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; padding-left:5px;">カナ</td>
+        <td style="padding-left:5px;"><%= @customer.first_name_kana%> <span style="margin-right:15px;"></span> <%= @customer.last_name_kana%></td>
+      </tr>
+
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; padding-left:5px;">郵便番号</td>
+        <td style="padding-left:5px;"><%= @customer.postal_code%></td>
+      </tr>
+
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; padding-left:5px;">住所</td>
+        <td style="padding-left:5px;"><%= @customer.address%></td>
+      </tr>
+
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; padding-left:5px;">電話番号</td>
+        <td style="padding-left:5px;"><%= @customer.telephone_number%></td>
+      </tr>
+
+      <tr style="border:2px solid; height:50px;">
+        <td style="width:25%; border:2px solid; padding-left:5px;">メールアドレス</td>
+        <td style="padding-left:5px;"><%= @customer.email%></td>
+      </tr>
+    </table>
+
+    <div class="col-md-2 text-right" style="margin-top:35px;">
+      <strong style="font-size:25px; padding-right:25px;">配送先</strong>
+    </div>
+    <div class="col-md-9" style="margin-top:35px;">
+      <%= link_to "一覧を見る",addresses_path,class:"btn btn-primary text-light",style:"width:170px;"%>
+    </div>
+
+    <div class="col-md-2 text-right" style="margin-top:30px;">
+      <strong style="font-size:25px; padding-right:0px;">注文履歴</strong>
+    </div>
+    <div class="col-md-9" style="margin-top:30px;">
+      <%= link_to "一覧を見る",orders_path,class:"btn btn-primary text-light",style:"width:170px;"%>
     </div>
   </div>
 </div>

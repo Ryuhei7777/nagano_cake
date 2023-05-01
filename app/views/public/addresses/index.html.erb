@@ -1,2 +1,45 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container" style="margin-left:50px;">
+  <div class="mt-5 ml-5 pl-1">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 17%; font-size:23px;">配送先登録/一覧</h4>
+  </div>
+
+  <%= form_with model: @address, url:addresses_path do |f| %>
+    <div class="row" style="margin-top:50px;">
+      <div class="col-md-2" style="font-size:15px; padding-top:5px;"><%= f.label :郵便番号 %><em>(ハイフンなし)</em></div>
+      <div class="col-md-10"><%= f.text_field :postal_code,placeholder:"0000000",style:"width:280px; height:35px;"%></div>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+      <div class="col-md-2" style="padding-top:5px;"><%= f.label :住所 %></div>
+      <div class="col-md-10"><%= f.text_field :address,placeholder:"東京都渋谷区余予備神園町0-0",style:"width:660px; height:35px;"%></div>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+      <div class="col-md-2" style="font-size:15px; padding-top:5px;"><%= f.label :宛名 %></div>
+      <div class="col-md-7"><%= f.text_field :name,placeholder:"令和道子",style:"width:200px; height:35px;"%></div>
+      <div class="col-md-3"><%= f.submit '新規登録',class:"btn btn-success text-light",style:"width:55%;"%></div>
+    </div>
+  <% end %>
+
+  <table class="col-md-9" border="2" style="margin-top:70px;">
+    <tr style="border:2px solid; height:60px;">
+      <th style="width:10%; border:2px solid; height:10px; padding-left:5px;">郵便番号</th>
+      <th style="width:50%; border:2px solid; height:10px; padding-left:5px;">住所</th>
+      <th style="width:10%; border:2px solid; height:10px; padding-left:5px;">宛名</th>
+      <th style="width:30%; border:2px solid; height:10px; padding-left:5px;"></th>
+    </tr>
+    <% @addresses.each do |address|%>
+    <tr style="border:2px solid; height:60px;">
+      <th style="border:2px solid; height:10px; padding-left:5px;"><%= address.postal_code%></th>
+      <th style="border:2px solid; height:10px; padding-left:5px;"><%= address.address%></th>
+      <th style="border:2px solid; height:10px; padding-left:5px;"><%= address.name %></th>
+      <th style="border:2px solid; height:10px; padding-left:5px;">
+        <%= link_to '編集する',edit_address_path(address),class:"btn btn-success text-light",style:"width:40%; margin-left:10px;"%>
+        <%= link_to '削除する',address_path(address),method: :delete,class:"btn btn-danger text-light",style:"width:40%; margin-left:10px;"%>
+      </th>
+    </tr>
+    <% end %>
+  </table>
+  
+  </div>
+</div>
