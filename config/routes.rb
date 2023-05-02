@@ -28,10 +28,10 @@ Rails.application.routes.draw do
   post "/orders/confirm" => "public/orders#confirm", as: "public_orders_confirm"
   get "/orders/thanks" => "public/orders#thanks", as: "public_orders_thanks"
 
+  delete "/cart_items/destroy_all" => "public/cart_items#destroy_all", as: "cart_items_destroy_all"
   scope module: :public do
     resources :cart_items, only: [:index, :update, :destroy, :create]
   end
-  delete "/cars_items/destroy_all" => "public/cars_items#destroy_all", as: ""
 
   scope module: :public do
     resource :customers, only: [:show, :edit, :update]
