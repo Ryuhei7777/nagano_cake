@@ -1,2 +1,82 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container" style="margin-left:50px;">
+  <div class="mt-5">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 17%; margin-left:100px;">注文情報入力</h4>
+  </div>
+  <%= form_with model: @order, url:public_orders_confirm_path,local: true do |f| %>
+
+  <div class="row">
+    <div class="col-12"><b style="font-size:20px;">支払方法</b></div>
+
+    <div style="margin-left:45px;">
+      <div class="col-12">
+        <%= f.radio_button :payment_method, "credit_card" %>
+        <%= f.label :payment_method_credit_card, "クレジットカード" %>
+      </div>
+      <div class="col-12">
+        <%= f.radio_button :payment_method, "transfer" %>
+        <%= f.label :payment_method_transfer, "銀行振込" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12"><b style="font-size:20px;">お届け先</b></div>
+  </div>
+
+  <div style="margin-left:45px;">
+    <div class="row" style="margin-bottom:10px;">
+      <div class="col-12">
+        <div><%= f.radio_button :select_address, 0 ,checked: true ,style:"margin-right:5px;"%>ご自身の住所</div>
+        <div style="margin-left:25px; width:505px;"><%= current_customer.address_display %></div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom:10px;">
+      <div class="col-12">
+        <div> <%= f.radio_button :select_address, 1,style:"margin-right:5px; margin-bottom:10px;" %>登録済住所から選択</div>
+        <div style="margin-left:25px;"> <%= f.select :address_id , options_from_collection_for_select(Address.all, :id, :address_display) %></div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom:10px;">
+      <div class="col-12">
+        <div> <%= f.radio_button :select_address, 2,style:"margin-right:5px;" %>新しいお届け先</div>
+      </div>
+      <div class="col-12" style="margin-left:25px;">
+        <table>
+          <tr>
+            <td>郵便番号<em>(ハイフンなし)</em></td>
+            <td style="padding-left:20px; padding-top:10px;"> <%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :address,style:"width:200%;" %></td>
+          </tr>
+          <tr>
+            <td >宛名</td>
+            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :name %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+    <%= f.submit "確認画面へ進む",class:"btn btn-success text-light",style:"width:15%; margin-left:30%;" %>
+
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
