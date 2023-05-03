@@ -44,27 +44,21 @@
         <table>
           <tr>
             <td>郵便番号<em>(ハイフンなし)</em></td>
-            <td style="padding-left:20px; padding-top:10px;"> <%= f.text_field :postal_code %></td>
+            <td style="padding-left:20px; padding-top:10px;"> <%= f.text_field :shipping_postal_code %></td>
           </tr>
           <tr>
             <td>住所</td>
-            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :address,style:"width:200%;" %></td>
+            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :shipping_address,style:"width:200%;" %></td>
           </tr>
           <tr>
             <td >宛名</td>
-            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :name %></td>
+            <td style="padding-left:20px; padding-top:10px;"><%= f.text_field :shipping_name %></td>
           </tr>
         </table>
       </div>
     </div>
   </div>
-
-
-
-
-
-    <%= f.submit "確認画面へ進む",class:"btn btn-success text-light",style:"width:15%; margin-left:30%;" %>
-
+    <%= f.submit "確認画面へ進む",class:"btn btn-primary text-light",style:"width:15%; margin-left:30%;" %>
   <% end %>
 </div>
 

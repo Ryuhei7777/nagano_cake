@@ -22,12 +22,13 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
+  
+  get "/orders/thanks" => "public/orders#thanks", as: "public_orders_thanks"
   scope module: :public do
     resources :orders, only: [:new, :create, :index, :show]
   end
   post "/orders/confirm" => "public/orders#confirm", as: "public_orders_confirm"
-  get "/orders/thanks" => "public/orders#thanks", as: "public_orders_thanks"
-
+  
   delete "/cart_items/destroy_all" => "public/cart_items#destroy_all", as: "cart_items_destroy_all"
   scope module: :public do
     resources :cart_items, only: [:index, :update, :destroy, :create]
