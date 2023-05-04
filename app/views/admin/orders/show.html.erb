@@ -1,39 +1,76 @@
 <div class="container">
   <div class="d-flex flex-row mt-5 ml-5 pl-3">
-    <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 15%;">注文履歴一覧</h4>
+    <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 20%;">注文履歴詳細</h4>
   </div>
 
-  <div class="row" style="margin-top:15px; margin-left:50px;">
-    <div class="col-md-10">
+  <div class="row" style="margin-top:10px;">
+    <div class="col-md-12">
+      <b style="font-size:20px; margin-right:110px;">購入者</b>
+      <span style="font-size:20px;"><%= link_to (@order.customer.first_name + " " + @order.customer.last_name), admin_customer_path(@order.customer_id )%></span>
+    </div>
+
+    <div class="col-md-12" style="margin-top:10px;">
+      <b style="font-size:20px; margin-right:110px;">注文日</b>
+      <span style="font-size:20px;"><%= @order.created_at.strftime('%Y/%m/%d') %></span>
+    </div>
+
+    <div class="col-md-12" style="margin-top:10px;">
+      <b style="font-size:20px; margin-right:110px;">発送先</b>
+      <span style="font-size:20px;">
+          〒<%= (@order.shipping_postal_code.to_s.insert(3, "-") + " " + @order.shipping_address )%> </br>
+          <span style="margin-left:175px;"></span><%= @order.shipping_name %>
+      </span>
+    </div>
+
+    <div class="col-md-12" style="margin-top:10px;">
+      <b style="font-size:20px; margin-right:90px;">支払方法</b>
+      <span style="font-size:20px;"><%= @order.payment_method_i18n %></span>
+    </div>
+
+    <%= form_with model: @order, url:admin_order_path(@order), method: :patch  do |f|%>
+      <div class="col-md-12" style="margin-top:10px;">
+        <b style="font-size:20px; margin-right:30px;">注文ステータス</b>
+        <span style="font-size:17px;"><%= f.select :status, Order.statuses_i18n.invert %></span>
+        <span style="margin-left:30px;"><%= f.submit '更新',class:"btn btn-success text-light",style:"font-size:15px;" %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row" style="margin-top:25px;">
+    <div class="col-md-9">
       <table class="table">
         <tr　class="border-top">
-          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">購入日時</th>
-          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">購入者</th>
-          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">注文個数</th>
-          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">注文ステータス</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">商品名</th>
+          <th bgcolor="#f5f5f5", style="width:20%" class="pl-3">単価( 税込 )</th>
+          <th bgcolor="#f5f5f5", style="width:15%" class="pl-3">数量</th>
+          <th bgcolor="#f5f5f5", style="width:15%" class="pl-3">小計</th>
+          <th bgcolor="#f5f5f5", style="width:20%" class="pl-3">製作ステータス</th>
+          <th bgcolor="#f5f5f5", style="width:15%" class="pl-3"></th>
         </tr>
 
-        <% @orders.each do |order|%>
-          <% @count = 0 %>
-          <% order.order_details.each do |order_detail| %>
-            <% @count += order_detail.quantity %>
-          <% end %>
-
+        <% @order.order_details.each do |order_detail|%>
           <tr class="border-bottom">
-            <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'),admin_order_path(order) %></td>
-            <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
-            <td><%= @count %></td>
-            <td><%= order.status_i18n %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
-
         <% end %>
       </table>
       </div>
+      <div class="col-md-3">
+        <div>
+          <span><b>商品合計</b></span><span>円</span>
+        </div>
+        <div>
+          <span><b>送料</b></span><span>円</span>
+        </div>
+        <div>
+          <span><b>請求金額合計</b></span><span>円</span>
+        </div>
+      </div>
     </div>
-
-    <div style="margin-left: 45%;" class="mt-3">
-    <%= paginate @orders %>
-    </div>
-
   </div>
 </div>
