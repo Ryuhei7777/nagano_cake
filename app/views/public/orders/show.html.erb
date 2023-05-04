@@ -1,2 +1,71 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="mt-5 ml-5 pl-3">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 20%;">注文履歴詳細</h4>
+  </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-md-8">
+      <div><b style="font-size:20px;">注文情報</b></div>
+      <table class="table" style="margin-top:10px;">
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:20%; border:2px solid;">注文日</th>
+          <th style="width:80%; border:2px solid;"><%= @order.updated_at.strftime("%Y/%m/%d").to_s %></th>
+        </tr>
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:20%; border:2px solid;">配送先</th>
+          <th style="width:80%; border:2px solid; padding:0; padding-left:10px;">
+            〒<%= @order.shipping_postal_code %> </br>
+              <%= @order.shipping_address %> </br>
+              <%= @order.shipping_name %>
+          </th>
+        </tr>
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:20%; border:2px solid;">支払い方法</th>
+          <th style="width:80%; border:2px solid;"><%= @order.payment_method_i18n %></th>
+        </tr>
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:20%; border:2px solid;">ステータス</th>
+          <th style="width:80%; border:2px solid;"><%= @order.status_i18n %></th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4" >
+      <div><b style="font-size:20px;">請求情報</b></div>
+      <table class="table" style="margin-top:10px;">
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:60%; border:2px solid;">商品合計</th>
+          <th style="width:40%; border:2px solid;"><%=(@order.billing_amount - @order.carriage).to_s(:delimited) %></th>
+        </tr>
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:60%; border:2px solid;">配送料</th>
+          <th style="width:40%; border:2px solid;"><%= @order.carriage %></th>
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:60%; border:2px solid;">ご請求金額</th>
+          <th style="width:40%; border:2px solid;"><%= @order.billing_amount.to_s(:delimited)%></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10">
+      <div><b style="font-size:20px;">注文内容</b></div>
+      <table class="table" style="margin-top:10px;">
+        <tr>
+          <th bgcolor="#f5f5f5", style="width:55%; border:2px solid;">商品</th>
+          <th bgcolor="#f5f5f5", style="width:15%; border:2px solid;">単価(税込)</th>
+          <th bgcolor="#f5f5f5", style="width:10%; border:2px solid;">個数</th>
+          <th bgcolor="#f5f5f5", style="width:20%; border:2px solid;">小計</th>
+        </tr>
+        <% @order.order_details.each do |order_detail|%>
+        <tr>
+          <td style="border:2px solid;"><%= order_detail.item.name %></td>
+          <td style="border:2px solid;"><%= order_detail.purchase_price.to_s(:delimited) %></td>
+          <td style="border:2px solid;"><%= order_detail.quantity %></td>
+          <td style="border:2px solid;"><%= (order_detail.purchase_price * order_detail.quantity).to_s(:delimited) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
