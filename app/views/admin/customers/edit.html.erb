@@ -1,2 +1,89 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-row mt-5 ml-2">
+    <h4 class="text-center" style="background-color: #dcdcdc; width: 30%;"><%= (@customer.first_name + @customer.last_name) %>さんの会員詳細</h4>
+  </div>
+
+  <%= form_with model: @customer, url:admin_customer_path(@customer), method: :patch  do |f|%>
+  <div class="row" style="margin-top:30px">
+    <div class="col-2">
+      <span style="font-size:17px;">会員ID</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= @customer.id %></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2" >
+      <span style="font-size:17px;">氏名</span>
+    </div>
+    <div class="col-10">
+      <span class="text-break" style="font-size: 17px;"><%= f.text_field :first_name,style:"width:200px; height:35px;"%><span style="margin-left:15px;"></span><%= f.text_field :last_name,style:"width:200px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">フリガナ</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= f.text_field :first_name_kana,style:"width:200px; height:35px;"%><span style="margin-left:15px;"></span><%= f.text_field :last_name_kana,style:"width:200px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">郵便番号</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= f.text_field :postal_code,style:"width:200px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">住所</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= f.text_field :address,style:"width:600px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">電話番号</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= f.text_field :telephone_number,style:"width:200px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">メールアドレス</span>
+    </div>
+    <div class="col-10">
+      <span style="font-size: 17px;"><%= f.email_field :email, autofocus: true, autocomplete: "email",style:"width:200px; height:35px;"%></span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-2">
+      <span style="font-size:17px;">会員ステータス</span>
+    </div>
+    <div class="col-10">
+      <%= f.radio_button :is_deleted, "false",style:"font-size:20px;" %>
+      <%= f.label :is_deleted, "有効",class:"mr-3" ,style:"font-size:17px;" %>
+
+      <%= f.radio_button :is_deleted, "true" %>
+      <%= f.label :is_deleted, "退会" ,style:"font-size:17px;" %>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:30px;">
+    <div class="col-md-2" style="margin-left:190px;">
+      <%= f.submit "変更を保存",class:"btn btn-success text-center ",style:"width:170px; height:50px; font-size:20px;" %>
+    </div>
+  </div>
+  <% end %>
+</div>

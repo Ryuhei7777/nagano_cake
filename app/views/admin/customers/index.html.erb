@@ -15,16 +15,16 @@
 
         <% @customers.each do |customer|%>
           <% if customer.is_deleted ==true %>
-          <tr>
+          <tr class="border-bottom">
             <td><%= customer.id %></td>
-            <td><%= link_to customer.last_name, admin_customer_path(customer.id) %></td>
+            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
             <td><%= customer.email %></td>
             <td><strong style="color: #808080;">退会</strong></td>
           </tr>
           <% else%>
-          <tr>
+          <tr class="border-bottom">
             <td><%= customer.id %></td>
-            <td><%= link_to customer.last_name, admin_customer_path(customer.id) %></td>
+            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
             <td><%= customer.email %></td>
             <td><strong style="color:#3cb371;">有効</strong></td>
           </tr>

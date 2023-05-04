@@ -1,2 +1,42 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-row mt-5 ml-5 pl-3">
+    <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 15%;">会員一覧</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9  mt-3" style="margin-left: 150px;">
+      <table class="table">
+        <tr　class="border-top">
+          <th bgcolor="#f5f5f5", style="width:10%" class="pl-3">会員ID</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">氏名</th>
+          <th bgcolor="#f5f5f5", style="width:30%" class="pl-3">メールアドレス</th>
+          <th bgcolor="#f5f5f5", style="width:15%" class="pl-3">ステータス</th>
+        </tr>
+
+        <% @customers.each do |customer|%>
+          <% if customer.is_deleted ==true %>
+          <tr class="border-bottom">
+            <td><%= customer.id %></td>
+            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
+            <td><%= customer.email %></td>
+            <td><strong style="color: #808080;">退会</strong></td>
+          </tr>
+          <% else%>
+          <tr class="border-bottom">
+            <td><%= customer.id %></td>
+            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
+            <td><%= customer.email %></td>
+            <td><strong style="color:#3cb371;">有効</strong></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+      </div>
+    </div>
+
+    <div style="margin-left: 45%;" class="mt-3">
+    <%= paginate @orders %>
+    </div>
+
+  </div>
+</div>
