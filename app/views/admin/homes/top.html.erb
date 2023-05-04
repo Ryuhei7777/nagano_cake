@@ -1,34 +1,31 @@
 <div class="container">
   <div class="d-flex flex-row mt-5 ml-5 pl-3">
-    <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 15%;">会員一覧</h4>
+    <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 15%;">注文履歴一覧</h4>
   </div>
 
-  <div class="row">
-    <div class="col-md-9  mt-3" style="margin-left: 150px;">
+  <div class="row" style="margin-top:15px; margin-left:50px;">
+    <div class="col-md-10">
       <table class="table">
         <tr　class="border-top">
-          <th bgcolor="#f5f5f5", style="width:10%" class="pl-3">会員ID</th>
-          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">氏名</th>
-          <th bgcolor="#f5f5f5", style="width:30%" class="pl-3">メールアドレス</th>
-          <th bgcolor="#f5f5f5", style="width:15%" class="pl-3">ステータス</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">購入日時</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">購入者</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">注文個数</th>
+          <th bgcolor="#f5f5f5", style="width:25%" class="pl-3">注文ステータス</th>
         </tr>
 
-        <% @customers.each do |customer|%>
-          <% if customer.is_deleted ==true %>
-          <tr class="border-bottom">
-            <td><%= customer.id %></td>
-            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
-            <td><%= customer.email %></td>
-            <td><strong style="color: #808080;">退会</strong></td>
-          </tr>
-          <% else%>
-          <tr class="border-bottom">
-            <td><%= customer.id %></td>
-            <td><%= link_to (customer.first_name + customer.last_name) , admin_customer_path(customer.id) %></td>
-            <td><%= customer.email %></td>
-            <td><strong style="color:#3cb371;">有効</strong></td>
-          </tr>
+        <% @orders.each do |order|%>
+          <% @count = 0 %>
+          <% order.order_details.each do |order_detail| %>
+            <% @count += order_detail.quantity %>
           <% end %>
+
+          <tr class="border-bottom">
+            <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'),admin_order_path(order) %></td>
+            <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
+            <td><%= @count %></td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+
         <% end %>
       </table>
       </div>

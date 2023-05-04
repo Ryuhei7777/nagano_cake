@@ -20,12 +20,12 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = CartItem.all
   end
-  
+
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    
+
     @cart_items = CartItem.all
     @cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -35,16 +35,16 @@ class Public::OrdersController < ApplicationController
       @order_detail.quantity = cart_item.amount
       @order_detail.crafting_status = 0
       @order_detail.save
-    end 
+    end
     current_customer.cart_items.destroy_all
     redirect_to public_orders_thanks_path
   end
-  
+
   def thanks
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.all.order(id: "DESC")
     @order_details = OrderDetail.all
   end
 
