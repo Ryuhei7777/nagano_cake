@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-left:70px;">
   <div class="d-flex flex-row mt-5 ml-5 pl-3">
     <h4 class="text-center pt-1" style="background-color: #dcdcdc; width: 20%;">注文履歴詳細</h4>
   </div>
@@ -50,26 +50,36 @@
 
         <% @order.order_details.each do |order_detail|%>
           <tr class="border-bottom">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><span><%= order_detail.item.name%></span></td>
+            <td><span><%= order_detail.purchase_price.to_s(:delimited) %></span></td>
+            <td><%= order_detail.quantity %></td>
+            <% sub_total = 0 %>
+            <% sub_total = order_detail.purchase_price * order_detail.quantity %>
+            <td><%= sub_total.to_s(:delimited) %></td>
+            <% @total_cost += sub_total %>
+            <%= form_with model: order_detail, url:admin_order_detail_path(order_detail), method: :patch  do |f|%>
+              <td><%= f.select :crafting_status, OrderDetail.crafting_statuses_i18n.invert  %></td>
+              <td><%= f.submit '更新',class:"btn btn-success text-light",style:"font-size:15px;" %></td>
+            <% end %>
           </tr>
         <% end %>
       </table>
+    </div>
+
+    <div class="col-md-3" style="margin-top:auto">
+      <div class="d-flex">
+        <div style="width:60%;"><b style="font-size:20px;">商品合計</b></div>
+        <div style="width:40%;"><span style="font-size:20px; display:block; text-align:right;"><%= @total_cost.to_s(:delimited) %>円</span></div>
       </div>
-      <div class="col-md-3">
-        <div>
-          <span><b>商品合計</b></span><span>円</span>
-        </div>
-        <div>
-          <span><b>送料</b></span><span>円</span>
-        </div>
-        <div>
-          <span><b>請求金額合計</b></span><span>円</span>
-        </div>
+
+      <div class="d-flex">
+        <div style="width:60%;"><b style="font-size:20px;">送料</b></div>
+        <div style="width:40%;"><span style="font-size:20px; display:block; text-align:right;"><%= @order.carriage %>円</span></div>
+      </div>
+
+      <div class="d-flex">
+        <div style="width:60%;"><b style="font-size:20px;">請求金額合計</b></div>
+        <div style="width:40%;"><b  style="font-size:20px; display:block; text-align:right;"><%= (@total_cost + @order.carriage).to_s(:delimited) %>円</b></div>
       </div>
     </div>
   </div>
