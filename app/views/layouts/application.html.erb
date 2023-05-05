@@ -11,11 +11,11 @@
   </head>
 
   <body>
+    <container style="height: 20%;">
     <% if admin_signed_in? %>
-    <container>
-      <div class="d-flex flex-row ">
+      <div class="d-flex flex-row" style="height: 90px; border-bottom: solid 2px black;">
         <div class="col-4">
-          <h2>NAGANO_CAKEへようこそ</h2>
+          <h2 style="margin-top:10px;"><%= link_to admin_root_path do%> <%= image_tag "image_logo",width: '250px', height: '70px'%> <% end %></h2>
         </div>
         <div class="col-8 d-flex flex-row" style="margin-left:7%; margin-top:10px;">
           <li class="col-md-2 px-0" style="list-style:none;"><%= link_to "商品一覧",admin_items_path,class:"btn btn-success text-light",style:"width:80%;"%></li>
@@ -26,9 +26,9 @@
         </div>
       </div>
     <% elsif customer_signed_in? %>
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row" style="height: 90px; border-bottom: solid 2px black;">
         <div class="col-4">
-          <h2><%= link_to "NAGANO_CAKE",root_path %></h2>
+          <h2 style="margin-top:10px;"><%= link_to root_path do%> <%= image_tag "image_logo",width: '250px', height: '70px'%> <% end %></h2>
         </div>
         <div class="col-8 d-flex flex-row" style="margin-left:23%; margin-top:10px;">
           <li class="col-md-2 px-0" style="list-style:none;"><%= link_to "マイページ",customers_path,class:"btn btn-success text-light",style:"width:80%;"%></li>
@@ -38,9 +38,9 @@
         </div>
       </div>
     <% else %>
-     <div class="d-flex flex-row">
+     <div class="d-flex flex-row" style="height: 90px; border-bottom: solid 2px black;">
         <div class="col-4">
-          <h2><%= link_to "NAGANO_CAKE",root_path %></h2>
+          <h2 style="margin-top:10px;"><%= link_to root_path do %> <%= image_tag "image_logo",width: '250px', height: '70px'%> <% end %> </h2>
         </div>
         <div class="col-8 d-flex flex-row" style="margin-left:23%; margin-top:10px;">
           <li class="col-md-2 px-0" style="list-style:none;"><%= link_to "About",public_about_path,class:"btn btn-success text-light",style:"width:70%;"%></li>
@@ -49,16 +49,17 @@
           <li class="col-2 px-0" style="list-style:none;"><%= link_to "ログイン",new_customer_session_path,class:"btn btn-success text-light",style:"width:70%; font-size:15px; height:37px;"%></li>
         </div>
       </div>
-    </container>
     <% end %>
+    </container>
 
-    <div>
+
+    <div style="min-height: 500px;">
       <%= yield %>
     </div>
 
-    <footer>
-      <div class="mt-5" style="background-color: #dcdcdc;">
-        <P class="text-center">CopyRight Infratop.inc</P>
+    <footer style="min-height: 100px; background-color: #dcdcdc;">
+      <div class="mt-5">
+        <P class="text-center" style="padding-top: 50px; font-size:17px;">CopyRight Infratop.inc</P>
       </div>
     </footer>
   </body>
