@@ -23,7 +23,7 @@ class Public::CartItemsController < ApplicationController
     else
       @cart_items = CartItem.all
       @total_cost = 0
-      flash[:notice] = "新規ユーザ登録もしくはログインをしてください。"
+      flash[:notice] = "新規ユーザ登録もしくは、ログインをしてください。"
       render :index
     end
   end
