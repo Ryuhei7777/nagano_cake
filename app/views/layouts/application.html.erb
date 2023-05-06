@@ -27,7 +27,7 @@
       </div>
       <div style="border-bottom: solid 2px black;">
           <%= form_with url:items_path, method: :get do |f| %>
-            <%= f.text_field :item_name , style:"margin-left:1200px; margin-bottom:10px; "%>
+            <%= f.text_field :item_name ,placeholder: "Search", style:"margin-left:1200px; margin-bottom:10px; "%>
           <% end %>
       </div>
     <% elsif customer_signed_in? %>
@@ -44,7 +44,7 @@
       </div>
       <div style="border-bottom: solid 2px black;">
           <%= form_with url:items_path, method: :get do |f| %>
-            <%= f.text_field :item_name , style:"margin-left:1200px; margin-bottom:10px; "%>
+            <%= f.text_field :item_name ,placeholder: "Search" ,style:"margin-left:1200px; margin-bottom:10px; "%>
           <% end %>
       </div>
     <% else %>
@@ -59,9 +59,9 @@
           <li class="col-2 px-0" style="list-style:none;"><%= link_to "ログイン",new_customer_session_path,class:"btn btn-success text-light",style:"width:70%; font-size:15px; height:37px;"%></li>
         </div>
       </div>
-      <div style="border-bottom: solid 2px black;">
+      <div class="search" style="border-bottom: solid 2px black;">
           <%= form_with url:items_path, method: :get do |f| %>
-            <%= f.text_field :item_name , style:"margin-left:1200px; margin-bottom:10px; "%>
+            <%= f.text_field :item_name ,placeholder: "Search" ,style:"margin-left:1200px; margin-bottom:10px; "%>
           <% end %>
       </div>
     <% end %>
