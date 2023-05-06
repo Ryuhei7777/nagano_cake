@@ -33,7 +33,7 @@
     <div class="row" style="margin-bottom:10px;">
       <div class="col-12">
         <div> <%= f.radio_button :select_address, 1,style:"margin-right:5px; margin-bottom:10px;" %>登録済住所から選択</div>
-        <div style="margin-left:25px;"> <%= f.select :address_id , options_from_collection_for_select(Address.all, :id, :address_display) %></div>
+        <div style="margin-left:25px;"> <%= f.select :address_id , options_from_collection_for_select(Address.all.where(customer_id: current_customer.id), :id, :address_display) %></div>
       </div>
     </div>
     <div class="row" style="margin-bottom:10px;">
@@ -59,7 +59,7 @@
     </div>
   </div>
     <%= f.submit "確認画面へ進む",class:"btn btn-primary text-light",style:"width:15%; margin-left:30%;" %>
-  <% end %>
+    <% end %>
 </div>
 
 

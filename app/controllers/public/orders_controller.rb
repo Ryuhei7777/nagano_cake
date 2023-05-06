@@ -25,7 +25,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-
+    
     @cart_items = CartItem.all
     @cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all.order(id: "DESC")
+    @orders = Order.all.where(customer_id: current_customer.id).order(id: "DESC")
     @order_details = OrderDetail.all
   end
 

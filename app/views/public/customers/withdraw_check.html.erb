@@ -15,6 +15,6 @@
 
   <div class="row" style="margin-top:20px;">
     <div class="col-md-1" style="margin-left:410px;"><%= link_to "退会しない",customers_path,class:"btn btn-primary text-light",style:"width:130px; height:35px;"%></div>
-    <div class="col-md-1" style="margin-left:60px;"><%= link_to "退会する",withdraw_path,method: :patch,class:"btn btn-danger text-light",style:"width:130px; height:35px;"%></div>
+    <div class="col-md-1" style="margin-left:60px;"><%= link_to "退会する",withdraw_path,method: :patch, data: { confirm: '本当に退会しますか？' },class:"btn btn-danger text-light",style:"width:130px; height:35px;"%></div>
   </div>
 </div>
